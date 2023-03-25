@@ -15,7 +15,7 @@ public class UserController {
         return "joinForm";
     }
 
-    @PostMapping("joinOk")
+    @PostMapping("/joinOk")
     public String joinOk(
             @RequestParam("name") String name,
             @RequestParam("email") String email,
@@ -24,8 +24,29 @@ public class UserController {
         return "redirect:/welcome";
     }
 
-    @GetMapping("welcome")
+    @GetMapping("/welcome")
     public String welcome() {
         return "welcome";
     }
+
+    @GetMapping("/loginForm")
+    public  String loginForm() {
+        return "loginForm";
+    }
+
+    @PostMapping("/loginOk")
+    public String loginOk(
+            @RequestParam("email") String email,
+            @RequestParam("password") String password
+    ) {
+        // email과 password가 일치한다면(로그인 성공) 세션에 회원 정보 저장.
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        // 세션에서 회원 정보를 삭제한다.
+        return "redirect:/";
+    }
+
 }
